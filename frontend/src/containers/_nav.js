@@ -4,14 +4,23 @@ import CIcon from "@coreui/icons-react";
 const _nav = [
   {
     _tag: "CSidebarNavItem",
-    name: "Dashboard",
-    to: "/dashboard",
-    className: "d-none",
-    icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon" />,
-    badge: {
-      color: "info",
-      text: "NEW",
-    },
+    name: "List User",
+    to: "/users",
+    icon: <CIcon name="cil-user" customClasses="c-sidebar-nav-icon" />,
+    // badge: {
+    //   color: "info",
+    //   text: "NEW",
+    // },
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Create User",
+    to: "/create-users",
+    icon: <CIcon name="cil-pencil" customClasses="c-sidebar-nav-icon" />,
+    // badge: {
+    //   color: "info",
+    //   text: "NEW",
+    // },
   },
   {
     _tag: "CSidebarNavTitle",

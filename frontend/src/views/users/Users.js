@@ -11,7 +11,8 @@ import {
   CPagination,
 } from "@coreui/react";
 
-import usersData from "./UsersData";
+// import usersData from "./UsersData";
+import axios from "axios";
 
 const getBadge = (status) => {
   switch (status) {
@@ -26,6 +27,18 @@ const getBadge = (status) => {
     default:
       return "primary";
   }
+};
+
+const usersData = () => {
+  axios
+    .get("https://sharingvision-backend.herokuapp.com/user")
+    .then((repos) => {
+      console.log(repos.data);
+      this.setState({
+        usersData: repos.data,
+      });
+      // return repos.data;
+    });
 };
 
 const Users = () => {
@@ -47,17 +60,22 @@ const Users = () => {
       <CCol xl={12}>
         <CCard>
           <CCardHeader>
-            Users
-            <small className="text-muted"> example</small>
+            <div class="row">
+              <div class="col-md-2 pull-right">
+                <a href="/#/create-users" class="btn btn-success btn-sm">
+                  Create User
+                </a>
+              </div>
+            </div>
           </CCardHeader>
           <CCardBody>
             <CDataTable
               items={usersData.data}
               fields={[
-                { key: "id", _classes: "font-weight-bold" },
-                "name",
+                { key: "name", _classes: "font-weight-bold" },
                 "username",
                 "password",
+                "action",
               ]}
               hover
               striped
@@ -66,9 +84,16 @@ const Users = () => {
               clickableRows
               onRowClick={(item) => history.push(`/users/${item.id}`)}
               scopedSlots={{
-                status: (item) => (
+                // status: (item) => (
+                //   <td>
+                //     <CBadge color={getBadge(item.status)}>{item.status}</CBadge>
+                //   </td>
+                // ),
+                action: () => (
                   <td>
-                    <CBadge color={getBadge(item.status)}>{item.status}</CBadge>
+                    <button class="btn btn-sm btn-info">Edit</button>
+                    &nbsp;&nbsp;
+                    <button class="btn btn-sm btn-danger">Delete</button>
                   </td>
                 ),
               }}
@@ -76,7 +101,7 @@ const Users = () => {
             <CPagination
               activePage={page}
               onActivePageChange={pageChange}
-              pages={5}
+              pages={2}
               doubleArrows={false}
               align="center"
             />
