@@ -11,8 +11,8 @@ import {
   CPagination,
 } from "@coreui/react";
 
-// import usersData from "./UsersData";
-import axios from "axios";
+import usersData from "./UsersData";
+// import axios from "axios";
 
 const getBadge = (status) => {
   switch (status) {
@@ -29,17 +29,17 @@ const getBadge = (status) => {
   }
 };
 
-const usersData = () => {
-  axios
-    .get("https://sharingvision-backend.herokuapp.com/user")
-    .then((repos) => {
-      console.log(repos.data);
-      this.setState({
-        usersData: repos.data,
-      });
-      // return repos.data;
-    });
-};
+// const usersData = () => {
+//   axios
+//     .get("https://sharingvision-backend.herokuapp.com/user")
+//     .then((repos) => {
+//       console.log(repos.data);
+//       this.setState({
+//         usersData: repos.data,
+//       });
+//       // return repos.data;
+//     });
+// };
 
 const Users = () => {
   const history = useHistory();
